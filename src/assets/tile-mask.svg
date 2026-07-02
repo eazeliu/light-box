@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" preserveAspectRatio="xMidYMid meet">
+  <!--
+    tile-mask.svg
+    - 256x256 mask template for a single grid unit
+    - White area = visible; transparent areas = cutouts (center hole + bottom notch 15px)
+    - Center circle radius = 36px (adjustable). Bottom notch is a triangle 15px tall.
+  -->
+  <!-- rectangle with a circular hole in the center; no bottom notch -->
+  <path fill="#ffffff" fill-rule="evenodd" d="M0 0 H256 V256 H0 Z M164 128 A36 36 0 1 0 92 128 A36 36 0 1 0 164 128 Z" />
+</svg>
