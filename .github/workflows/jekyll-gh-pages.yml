@@ -2,7 +2,7 @@ name: Deploy React site to Pages
 
 on:
   push:
-    branches: ["main"] # 如果你的預設分支是 master，請改成 "master"
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -24,11 +24,11 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-size: 20 # 使用穩定的 Node 版本
+          node-version: 20
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci # 比 npm install 更適合 CI 環境，速度更快
+        run: npm ci
 
       - name: Build React App
         run: npm run build
@@ -36,10 +36,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # ⚠️ 注意：這裡要根據你的 React 框架選擇產出的資料夾
-          # 如果是 Vite (React)，填入 ./dist
-          # 如果是 Create React App (CRA)，填入 ./build
-          path: ./dist 
+          path: ./dist
 
   deploy:
     environment:
